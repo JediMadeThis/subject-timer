@@ -307,7 +307,7 @@ function update() {
     contentsE.hidden = true;
     noticeE.textContent = `School starts at ${
       msToHms(referenceTimes[0]).fullHrsMins
-    }! About in ${msToHms(referenceTimes[9] - ms).fullChars}`;
+    }! About in ${msToHms(referenceTimes[0] - ms).fullChars}`;
 
     return;
   } else if (
