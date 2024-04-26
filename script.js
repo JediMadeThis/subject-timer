@@ -116,6 +116,7 @@ const timesTest = {
 };
 
 const periodCodesNames = {
+  homeroom: 'A',
   รักการอ่าน: 'รักการอ่าน',
   lunch: 'Lunch',
   ประชุมระดับ: 'ประชุมระดับ',
@@ -162,6 +163,7 @@ const periodCodesNames = {
 };
 
 const periodCodesNamesSimplified = {
+  homeroom: 'A',
   รักการอ่าน: 'รักการอ่าน',
   lunch: 'Lunch',
   ประชุมระดับ: 'ประชุมระดับ',
@@ -208,6 +210,7 @@ const periodCodesNamesSimplified = {
 };
 
 const periodTeachers = {
+  homeroom: '-',
   รักการอ่าน_1: '-',
   lunch_1: '-',
   ประชุมระดับ_1: '-',
@@ -258,6 +261,8 @@ const periodTeachers = {
 };
 
 const timeE = document.getElementById('time');
+const noticeE = document.getElementById('notice');
+const contentsE = document.getElementById('contents');
 
 const startTimeE = document.getElementById('startTime');
 const endTimeE = document.getElementById('endTime');
@@ -281,22 +286,42 @@ setInterval(update, 1000);
 function update() {
   const d = new Date();
 
-  let dayOfWeek = days[d.getDay()];
+  let day = d.getDay();
+  let dayOfWeek = days[day];
   let dayOfMonth = d.getDate();
   let month = months[d.getMonth()];
   let year = d.getFullYear();
   let time = d.toLocaleTimeString('en-GB');
 
+  let msSinceDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  let ms = d.getTime() - msSinceDay.getTime();
+
+  let referenceTimes = timesTest;
+
+  if (day === 1 || day === 6) {
+    contentsE.hidden = true;
+    noticeE.textContent = `No school today, it's ${days[day]}!`;
+
+    return;
+  } else if (ms < referenceTimes[0]) {
+    contentsE.hidden = true;
+    noticeE.textContent = `School starts at ${
+      msToHms(referenceTimes[0]).fullHrsMins
+    }! About in ${msToHms(referenceTimes[9] - ms).fullChars}`;
+
+    return;
+  } else if (
+    ms > referenceTimes[Object.entries(periods[dayOfWeek.toLowerCase()]).length]
+  ) {
+    contentsE.hidden = true;
+    noticeE.textContent = `School is over, time to go home!`;
+  }
+
   timeE.textContent = `${dayOfWeek}, ${month} ${ordinal_suffix_of(
     dayOfMonth
   )} ${year}, ${time}`;
 
-  let msSinceDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  let ms = d.getTime() - msSinceDay.getTime();
-
   let period = 0;
-
-  let referenceTimes = timesTest;
 
   //if (d.getDay() !== 0 && d.getDay() !== 6) {
   for (let i = 0; i < Object.keys(referenceTimes).length; i++) {
@@ -386,7 +411,20 @@ function msToHms(ms) {
     sS.length < 2 ? '0' + sS : sS
   }`;
 
-  return { hours, minutes, fullHrsMins, fullMinsSecs };
+  let hoursChars =
+    hours < 1 ? '' : `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+  let minutesChars =
+    minutes < 1 ? '' : `${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+  let secondsChars =
+    hours < 1
+      ? seconds === 1
+        ? `${seconds} second`
+        : `${seconds} seconds`
+      : '';
+
+  let fullChars = `${hoursChars} ${minutesChars} ${secondsChars}`;
+
+  return { hours, minutes, fullHrsMins, fullMinsSecs, fullChars };
 }
 
 // Turns hours and minutes into milliseconds
