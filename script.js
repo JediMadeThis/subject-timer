@@ -315,6 +315,8 @@ function update() {
   ) {
     contentsE.hidden = true;
     noticeE.textContent = `School is over, time to go home!`;
+
+    return;
   }
 
   timeE.textContent = `${dayOfWeek}, ${month} ${ordinal_suffix_of(
