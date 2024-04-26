@@ -294,8 +294,6 @@ function update() {
   let msSinceDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
   let ms = d.getTime() - msSinceDay.getTime();
 
-  console.log(ms);
-
   let period = 0;
 
   let referenceTimes = timesTest;
@@ -308,8 +306,6 @@ function update() {
     }
   }
 
-  console.log(referenceTimes[5]);
-
   let referencePeriodNames = periodCodesNames;
   if (useSimplifiedPeriodNames)
     referencePeriodNames = periodCodesNamesSimplified;
@@ -319,8 +315,6 @@ function update() {
     referencePeriodNames[
       String(periodCode).substring(0, String(periodCode).length - 2)
     ];
-
-  console.log(String(periodCode).substring(0, String(periodCode).length - 2));
 
   let periodCode2 = periods[dayOfWeek.toLowerCase()][period + 1];
   let periodName2 =
@@ -351,7 +345,6 @@ function update() {
 
   periodNameE2.textContent = periodName2;
   teachersE2.textContent = periodTeachers[periodCode2];
-  console.log(periodTeachers[periodCode2]);
 
   startTimeE.textContent = msToHms(timesTest[period]).fullHrsMins;
   endTimeE.textContent = msToHms(timesTest[period + 1]).fullHrsMins;
@@ -369,10 +362,6 @@ function update() {
     (timeElapsedMs / (referenceTimes[period + 1] - referenceTimes[period])) *
     100
   }%`;
-  console.log(
-    referenceTimes[period + 1] - referenceTimes[period],
-    timeElapsedMs
-  );
 }
 
 // Get the object key name by value
