@@ -90,6 +90,7 @@ const periods = {
   },
 };
 
+// Ending times for period (or) starting times for pervious period
 const times = {
   0: hmToMs(7, 25), // Period A (homeroom)
   1: hmToMs(8, 15), // 1st Period
