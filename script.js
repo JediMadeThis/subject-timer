@@ -391,12 +391,12 @@ function update() {
   teachersE2.textContent = periodTeachers[periodCode2];
 
   // Gets and displays the subject's starting and ending time for current subject
-  startTimeE.textContent = msToHms(timesTest[period]).fullHrsMins;
-  endTimeE.textContent = msToHms(timesTest[period + 1]).fullHrsMins;
+  startTimeE.textContent = msToHms(referenceTimes[period]).fullHrsMins;
+  endTimeE.textContent = msToHms(referenceTimes[period + 1]).fullHrsMins;
 
   // Gets and displays the subject's starting and ending time for next subject
-  startTimeE2.textContent = msToHms(timesTest[period + 1]).fullHrsMins;
-  endTimeE2.textContent = msToHms(timesTest[period + 2]).fullHrsMins;
+  startTimeE2.textContent = msToHms(referenceTimes[period + 1]).fullHrsMins;
+  endTimeE2.textContent = msToHms(referenceTimes[period + 2]).fullHrsMins;
 
   // Gets and displays time elapsed for current subject
   let timeElapsedMs = ms - referenceTimes[period];
