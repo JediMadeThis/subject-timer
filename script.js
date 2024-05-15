@@ -102,7 +102,7 @@ const times = {
   7: hmToMs(13, 30), // 5th Period
   8: hmToMs(14, 20), // 6th Period
   9: hmToMs(15, 10), // 7th Period
-  10: hmToMs(17, 50), // 8th Period (max for every day)
+  10: hmToMs(16, 0), // 8th Period (max for every day)
 };
 
 // Period names
@@ -219,25 +219,26 @@ const periodTeachers = {
   ท22101_1: 'ครูนวีณา',
   ค22101_1: 'ครูณัฐภัทร',
   ค22101_2: 'T. Jay',
+  ค22101_3: 'T. Jay, ครูณัฐภัทร',
   ว22101_1: 'ครูปวีณา',
   ว22101_2: 'T. Girlie',
-  ว22101_3: 'T. Girlie/ครูปวีณา',
+  ว22101_3: 'T. Girlie, ครูปวีณา',
   ว22104_2: 'T. Tommy',
   ส22101_1: 'ครูรมณีย์',
   ส22103_1: 'ครูรมณีย์',
   ส22105_1: 'พระอาจารย์',
-  พ22101_3: 'T. Leonor/ครูกิติยา',
+  พ22101_3: 'T. Leonor, ครูกิติยา',
   พ22102_1: 'ครูมะยิ้',
   ศ22103_1: 'ครูธัญรัตน์',
   ศ22104_1: 'ครูอรทัย',
   ง22101_1: 'ครูทยิตา',
   อ22102_2: 'T. Inspire',
-  อ22102_3: 'T. Inspire/ครูกฤตพร',
+  อ22102_3: 'T. Inspire, ครูกฤตพร',
   ว22201_1: 'ครูปวีณา',
-  อ20223_3: 'T. Mazha/ครูอารียา',
-  อ20233_3: 'อ.ทวี/ครูกฤตพร',
+  อ20223_3: 'T. Mazha, ครูอารียา',
+  อ20233_3: 'อ.ทวี, ครูกฤตพร',
   จ20201_1: 'ภาษาจีนเพื่อความเพลิดเพลิน 2',
-  ญ20201_1: 'ครูวาวุฒิ/อ.นาราวดี',
+  ญ20201_1: 'ครูวาวุฒิ, อ.นาราวดี',
 
   // 2nd Semester
   ท21102_1: 'ครูนวีณา',
@@ -396,7 +397,13 @@ function update() {
 
   // Gets and displays the subject's starting and ending time for next subject
   startTimeE2.textContent = msToHms(referenceTimes[period + 1]).fullHrsMins;
-  endTimeE2.textContent = msToHms(referenceTimes[period + 2]).fullHrsMins;
+  if (Object.entries(periods[dayOfWeek.toLowerCase()]).length < period + 2) {
+    endTimeE2.textContent = msToHms(
+      referenceTimes[period + 2] + 50 * 60 * 1000
+    ).fullHrsMins;
+  } else {
+    endTimeE2.textContent = msToHms(referenceTimes[period + 2]).fullHrsMins;
+  }
 
   // Gets and displays time elapsed for current subject
   let timeElapsedMs = ms - referenceTimes[period];
@@ -406,11 +413,19 @@ function update() {
   let timeTillMs = referenceTimes[period + 1] - ms;
   timeTillE.textContent = msToHms(timeTillMs).fullMinsSecs;
 
+  if (Object.entries(dayOfWeek.toLowerCase()).length === period) {
+    document.getElementById('next').hidden = true;
+  }
+
   // Updates the progress bar of the current subject
   progressInsideE.style.width = `${
     (timeElapsedMs / (referenceTimes[period + 1] - referenceTimes[period])) *
     100
   }%`;
+
+  //
+  //
+  //
 }
 
 // Get the object key name by using value
@@ -469,6 +484,7 @@ function between(x, min, max) {
 function ordinal_suffix_of(x) {
   let j = x % 10,
     k = x % 100;
+
   if (j === 1 && k !== 11) {
     return x + 'st';
   }
