@@ -38,11 +38,13 @@ const periods = {
     7: 'ค22101_1',
     8: 'ศ22104_1',
     9: 'ชุมนุม_1',
+    10: 'เสริมวิทย์_1',
+    11: 'เสริมคณิต_1',
   },
   tuesday: {
     0: 'homeroom_1',
-    1: 'Scout_1',
-    2: 'Language_1',
+    1: 'scout_1',
+    2: 'language_1',
     3: 'break_1',
     4: 'ว22201_1',
     5: 'lunch_1',
@@ -63,6 +65,7 @@ const periods = {
     8: 'อ22102_3',
     9: 'ว22101_3',
     10: 'ว22101_2',
+    11: 'เสริมอังกฤษ_1',
   },
   thursday: {
     0: 'homeroom_1',
@@ -75,6 +78,7 @@ const periods = {
     7: 'อ20223_2',
     8: 'ง22101_1',
     9: 'ง22101_1',
+    10: 'เสริมคณิต_1',
   },
   friday: {
     0: 'homeroom_1',
@@ -87,6 +91,8 @@ const periods = {
     7: 'ค22101_2',
     8: 'อ20223_3',
     9: 'ส22103_1',
+    10: 'เสริมอังกฤษ_1',
+    11: 'เสริมวิทย์_1',
   },
 };
 
@@ -95,14 +101,15 @@ const times = {
   0: hmToMs(7, 25), // Period A (homeroom)
   1: hmToMs(8, 15), // 1st Period
   2: hmToMs(9, 5), // 2nd Period
-  3: hmToMs(10, 10), // Break
-  4: hmToMs(11, 0), // 3rd Period
-  5: hmToMs(11, 50), // Lunch
-  6: hmToMs(12, 40), // 4th Period
-  7: hmToMs(13, 30), // 5th Period
-  8: hmToMs(14, 20), // 6th Period
-  9: hmToMs(15, 10), // 7th Period
-  10: hmToMs(16, 0), // 8th Period (max for every day)
+  3: hmToMs(9, 55), // Break
+  4: hmToMs(10, 10), // 3rd Period
+  5: hmToMs(11, 0), // Lunch
+  6: hmToMs(11, 50), // 4th Period
+  7: hmToMs(12, 40), // 5th Period
+  8: hmToMs(13, 30), // 6th Period
+  9: hmToMs(14, 20), // 7th Period
+  10: hmToMs(15, 10), // 8th Period (max for every day)
+  11: hmToMs(16, 0),
 };
 
 // Period names
@@ -114,6 +121,10 @@ const periodCodesNames = {
 
   แนะแนว: 'แนะแนว',
   break: 'Break',
+
+  เสริมวิทย์: 'เสริมวิทย์',
+  เสริมคณิต: 'เสริมคณิต',
+  เสริมอังกฤษ: 'เสริมอังกฤษ',
 
   // 1st Semester
   ท22101: 'ภาษาไทยพื้นฐาน 3',
@@ -165,6 +176,10 @@ const periodCodesNamesSimplified = {
   แนะแนว: 'แนะแนว',
   break: 'Break',
 
+  เสริมวิทย์: 'Additional Science',
+  เสริมคณิต: 'Additional Maths',
+  เสริมอังกฤษ: 'Additional English',
+
   // 1st Semester
   ท22101: 'Thai',
   ค22101: 'Maths',
@@ -214,6 +229,10 @@ const periodTeachers = {
 
   แนะแนว_1: 'Unknown',
   break_1: '-',
+
+  เสริมวิทย์_1: 'ครูปวีณา',
+  เสริมคณิต_1: 'ครูคณิตใหม่',
+  เสริมอังกฤษ_1: 'ครูกฤตพร',
 
   // 1st Semester
   ท22101_1: 'ครูนวีณา',
