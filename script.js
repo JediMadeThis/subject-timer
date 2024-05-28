@@ -98,17 +98,17 @@ const periods = {
 
 // Ending times for period (or) starting times for pervious period
 const times = {
-  0: hmToMs(7, 25), // Period A (homeroom)
-  1: hmToMs(8, 15), // 1st Period
-  2: hmToMs(9, 5), // 2nd Period
-  3: hmToMs(9, 55), // Break
-  4: hmToMs(10, 10), // 3rd Period
-  5: hmToMs(11, 0), // Lunch
-  6: hmToMs(11, 50), // 4th Period
-  7: hmToMs(12, 40), // 5th Period
-  8: hmToMs(13, 30), // 6th Period
-  9: hmToMs(14, 20), // 7th Period
-  10: hmToMs(15, 10), // 8th Period (max for every day)
+  0: hmToMs(7, 25),
+  1: hmToMs(8, 15),
+  2: hmToMs(9, 5),
+  3: hmToMs(9, 55),
+  4: hmToMs(10, 10),
+  5: hmToMs(11, 0),
+  6: hmToMs(11, 50),
+  7: hmToMs(12, 40),
+  8: hmToMs(13, 30),
+  9: hmToMs(14, 20),
+  10: hmToMs(15, 10),
   11: hmToMs(16, 0),
 };
 
@@ -119,6 +119,8 @@ const periodCodesNames = {
   lunch: 'Lunch',
   ประชุมระดับ: 'ประชุมระดับ',
 
+  ชุมนุม: 'ชุมนุม',
+  scout: 'ลูกเสือและเนตรนารี',
   แนะแนว: 'แนะแนว',
   break: 'Break',
 
@@ -173,6 +175,8 @@ const periodCodesNamesSimplified = {
   lunch: 'Lunch',
   ประชุมระดับ: 'ประชุมระดับ',
 
+  ชุมนุม: 'ชุมนุม',
+  scout: 'Scout',
   แนะแนว: 'แนะแนว',
   break: 'Break',
 
@@ -227,6 +231,8 @@ const periodTeachers = {
   lunch_1: '-',
   ประชุมระดับ_1: '-',
 
+  ชุมนุม: '-',
+  scout: '-',
   แนะแนว_1: 'Unknown',
   break_1: '-',
 
@@ -446,6 +452,8 @@ function update() {
   //
   //
 }
+
+function loadTimetable() {}
 
 // Get the object key name by using value
 function getKeyByValue(object, value) {
